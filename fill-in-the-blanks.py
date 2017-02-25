@@ -27,38 +27,41 @@ print "Levels available: Easy, Medium, Hard"
 # two functions = 1. validation correct input, and limits 2. question & answer correct
 
 def validate_input(userinput, validation):
-    if userinput.lower() in validation:
-        for e in validation:
-            if userinput == e:
-                return True
-            else:
-                return False
-    else:
-        return False
+    index = 0
+    while index < 5:
+        this_input = raw_input(userinput)
+        if this_input.lower() in validation:
+            for e in validation:
+                if this_input.lower() == e:
+                    return this_input.lower()
+                else:
+                    print "I am sorry but your choice was not a valid input"
+                    index += 1
+        else:
+            print "I am sorry but your choice was not a valid input"
+            index += 1
+    failure_message = "You have had too many tries. You are an idiot. Terminating."
+    return failure_message
 
 def choose_level():
-    global quiz, answers
     user_level_choice_valid = ['easy', 'medium', 'hard']
-    user_level_choice = raw_input("Please choose your difficulty level: ")
-    print user_level_choice
-
-    if validate_input(user_level_choice, user_level_choice_valid) == True:
-        if user_level_choice == "easy":
-            quiz = easy_quiz
-            answers = easy_answers
-        else:
-            if user_level_choice == "medium":
-                quiz = medium_quiz
-                answers = medium_answers
-            else:
-                if user_level_choice == "hard":
-                    quiz = hard_quiz
-                    answers = hard_answers
+    user_level_choice = "Please choose your difficulty level: "
+    quiz_chozen = validate_input(user_level_choice, user_level_choice_valid)
+    if quiz_chozen == "easy":
+        quiz_chozen = easy_quiz
+        answers = easy_answers
     else:
-        print "I am sorry but your choice was not a valid input"
-        choose_level()
+        if quiz_chozen == "medium":
+            quiz_chozen = medium_quiz
+            answers = hard_answers
+        else:
+            if quiz_chozen == "hard":
+                quiz_chozen = hard_quiz
+                answers = hard_answers
+    print quiz_chozen
+    print easy_answers
 
-    return quiz, answers
+
+
 
 choose_level()
-print quiz
