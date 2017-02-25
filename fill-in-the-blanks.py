@@ -58,10 +58,10 @@ def choose_level():
             if quiz_chozen == "hard":
                 quiz_chozen = hard_quiz
                 answers = hard_answers
-    print quiz_chozen
-    print easy_answers
+    return [quiz_chozen, answers]
 
-
-
-
-choose_level()
+choose_level_results = choose_level()
+quiz_chozen = choose_level_results[0]
+answers = choose_level_results[1]
+print quiz_chozen
+print answers
