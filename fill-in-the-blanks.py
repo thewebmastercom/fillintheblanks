@@ -1,23 +1,46 @@
-easy_quiz = '''EASY - A ___1___ is created with the def keyword. You specify the inputs a ___1___ takes by
-adding ___2___ separated by commas between the parentheses. ___1___s by default return ___3___ if you
-don't specify the value to return. ___2___ can be standard data types such as string, number, dictionary,
-tuple, and ___4___ or can be more complicated such as objects and lambda functions.'''
+easy_quiz = '''The club isn't the best place to find a lover\n
+So the bar is where I go\n
+Me and my friends at the ___1___ doing shots\n
+Drinking fast and then we ___2___ slow\n
+Come over and start up a ___3___ with just me\n
+And trust me I'll give it a chance now\n
+Take my hand, stop, put Van the Man on the jukebox\n
+And then we start to ___4___, and now I'm singing like\n
+"Shape of You, by Ed Sheeran"\n'''
 
-easy_answers = ['easy', 'easy', 'easy', 'easy']
+easy_answers = ['table', 'talk', 'conversation', 'dance']
 
-medium_quiz = '''MEDIUM - A ___1___ is created with the def keyword. You specify the inputs a ___1___ takes by
-adding ___2___ separated by commas between the parentheses. ___1___s by default return ___3___ if you
-don't specify the value to return. ___2___ can be standard data types such as string, number, dictionary,
-tuple, and ___4___ or can be more complicated such as objects and lambda functions.'''
+medium_quiz = '''
+I wanna be the very ___1___\n
+Like no one ever was\n
+To catch ___5___ is my real ___2___\n
+To ___3___ ___5___ is my cause\n
+\n
+I will ___4___ across the land\n
+Searching far and wide\n
+Each Pokemon to understand\n
+The ___6___ that's inside\n
+"Pokemon Theme, by Pokemon" X\n'''
 
-medium_answers = ['mediumanswer1', 'answer2', 'answer3', 'answer4']
+medium_answers = ['best', 'test', 'train', 'travel', 'them', 'power']
 
-hard_quiz = '''HARD - A ___1___ is created with the def keyword. You specify the inputs a ___1___ takes by
-adding ___2___ separated by commas between the parentheses. ___1___s by default return ___3___ if you
-don't specify the value to return. ___2___ can be standard data types such as string, number, dictionary,
-tuple, and ___4___ or can be more complicated such as objects and lambda functions.'''
+hard_quiz = '''
 
-hard_answers = ['hardanswer1', 'answer2', 'answer3', 'answer4']
+I heard that ___1___ settled down\n
+That ___2___ found a girl and ___1___ married now\n
+I heard that your dreams came true\n
+Guess she gave ___2___ things I didn't give to ___2___\n
+\n
+Old friend, why are ___2___ so shy?\n
+Ain't like ___2___ to hold back or hide from the light\n
+\n
+I hate to turn up out of the blue, uninvited\n
+But I ___4___ stay away, I couldn't fight it\n
+I had hoped ___3___ see my face and that y___3___ be reminded\n
+That for me, it isn't over\n
+"Someone Like You, by Adele"\n'''
+
+hard_answers = ["you're", 'you', "you'd", "couldn't"]
 
 default_tries = 5 # This sets the number of user input tries by default i.e. for choosing level, or playing again.
 
@@ -96,7 +119,7 @@ def quiz():
 # validating each answer via the validate_input function.
 # Finally, it calls the play_again function to see if user wants to play again.
 
-    print "\nWelcome to the fill in the blanks quiz.\n"
+    print "\nCan you fill in the blanks in these song lyrics?.\n"
     print "Levels available: Easy, Medium, Hard.\n"
     quiz, answers = choose_level()
     tries = int(choose_number_of_tries())
@@ -105,7 +128,7 @@ def quiz():
     while question < len(answers) + 1:
         blank = "___" + str(question) + "___"
         user_level_choice_valid = [answers[question - 1]]
-        user_level_choice = "\nPlease fill in the blank for " + blank + ": "
+        user_level_choice = "\nPlease fill in the missing song lyrics for " + blank + ": "
         chosen_answer = validate_input(user_level_choice, user_level_choice_valid, tries)
         quiz = quiz.replace(str(blank), str(chosen_answer))
         print "\n" + quiz
