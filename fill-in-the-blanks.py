@@ -33,15 +33,12 @@ def validate_input(userinput, validation, tries):
         if this_input.lower() in validation:
             for e in validation:
                 if this_input.lower() == e:
-                    print this_input.lower()
                     return this_input.lower()
         else:
-            print "I am sorry but your choice was not a valid input."
             index += 1
+            print "I am sorry but your choice was not a valid input."
             print "You have used " + str(index) + " of 5 tries."
-    failure_message = "You have had too many tries. You are an idiot. Terminating."
-    print failure_message
-    return failure_message
+    print "You have had too many tries. You are an idiot. Terminating."
 
 def choose_level():
     user_level_choice_valid = ['easy', 'medium', 'hard']
@@ -50,24 +47,23 @@ def choose_level():
     if quiz_chozen == "easy":
         quiz_chozen = easy_quiz
         answers = easy_answers
+    elif quiz_chozen == "medium":
+        quiz_chozen = medium_quiz
+        answers = medium_answers
+    elif quiz_chozen == "hard":
+        quiz_chozen = hard_quiz
+        answers = hard_answers
     else:
-        if quiz_chozen == "medium":
-            quiz_chozen = medium_quiz
-            answers = medium_answers
-        else:
-            if quiz_chozen == "hard":
-                quiz_chozen = hard_quiz
-                answers = hard_answers
-            else:
-                quit()
+        quit()
     return [quiz_chozen, answers]
-choose_level_results = choose_level()
-quiz_chozen = choose_level_results[0]
-answers = choose_level_results[1]
 
 def quiz():
+    choose_level_results = choose_level()
+    quiz_chozen = choose_level_results[0]
+    answers = choose_level_results[1]
     question = 1
     updated = quiz_chozen
+    print updated
     while question < 5:
         blank = "___" + str(question) + "___"
         user_level_choice_valid = [answers[question - 1]]
