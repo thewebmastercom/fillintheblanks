@@ -19,13 +19,6 @@ tuple, and ___4___ or can be more complicated such as objects and lambda functio
 
 hard_answers = ['hardanswer1', 'answer2', 'answer3', 'answer4']
 
-print "Welcome to the fill in the blanks quiz"
-print "Levels available: Easy, Medium, Hard"
-
-# Change this to take two arguments so can be reused to validate answers - TODO add guess limits
-
-# two functions = 1. validation correct input, and limits 2. question & answer correct
-
 def validate_input(userinput, validation, tries):
     index = 0
     while index < tries:
@@ -43,35 +36,39 @@ def validate_input(userinput, validation, tries):
 def choose_level():
     user_level_choice_valid = ['easy', 'medium', 'hard']
     user_level_choice = "Please choose your difficulty level: "
-    quiz_chozen = validate_input(user_level_choice, user_level_choice_valid, 5)
-    if quiz_chozen == "easy":
-        quiz_chozen = easy_quiz
+    quiz_chosen = validate_input(user_level_choice, user_level_choice_valid, 5)
+    if quiz_chosen == "easy":
+        quiz_chosen = easy_quiz
         answers = easy_answers
-    elif quiz_chozen == "medium":
-        quiz_chozen = medium_quiz
+    elif quiz_chosen == "medium":
+        quiz_chosen = medium_quiz
         answers = medium_answers
-    elif quiz_chozen == "hard":
-        quiz_chozen = hard_quiz
+    elif quiz_chosen == "hard":
+        quiz_chosen = hard_quiz
         answers = hard_answers
     else:
         quit()
-    return [quiz_chozen, answers]
+    return (quiz_chosen, answers)
 
 def quiz():
-    choose_level_results = choose_level()
-    quiz_chozen = choose_level_results[0]
-    answers = choose_level_results[1]
+    print "Welcome to the fill in the blanks quiz"
+    print "Levels available: Easy, Medium, Hard"
+    quiz_chosen, answers = choose_level()
+    print quiz_chosen
     question = 1
-    updated = quiz_chozen
-    print updated
     while question < 5:
         blank = "___" + str(question) + "___"
         user_level_choice_valid = [answers[question - 1]]
         user_level_choice = "Please fill in the blank for " + blank + ": "
         chosen_answer = validate_input(user_level_choice, user_level_choice_valid, 5)
-        updated = updated.replace(blank, chosen_answer)
-        print updated
+        quiz_chosen = quiz_chosen.replace(blank, chosen_answer)
+        print quiz_chosen
         question += 1
-    return updated
+    print "Congratulations!!"
+    play_again = validate_input('Play Again? Choose "yes" or "no": ', ['yes', 'no'], 5)
+    if play_again == "yes":
+        quiz()
+    else:
+        print "Thanks for playing. Bye!"
+        quit()
 quiz()
-print "Congratulations!!"
